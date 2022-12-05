@@ -378,13 +378,12 @@ select option{
 
 .panelistic_sidebar_selection{
 	background-color: #eeeeee33;
-	padding: 6px;
+	padding: 8px;
 	font-size: 14px;
 }
 
 .panelistic_sidebar_selection:hover{
 	background-color: #eeeeee66;
-	padding: 6px;
 }
 
 .panelistic_sidebar_selection:active{
