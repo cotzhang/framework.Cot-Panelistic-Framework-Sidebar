@@ -4,16 +4,19 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="panelistic3.0-electron.css">
 	<script src="panelistic3.0-electron.js"></script>
-	<title>Cot Desktop Application Framework</title>
+	<title>Cot Application Framework (with sidebar)</title>
 	<style type="text/css"></style>
 	<script type="text/javascript">
 		let $ = document.querySelector;
 		let panelistic;
+		let webview;
 		const electron = require("electron");
 		window.onload=function() {
 			document.getElementById('window_title').innerText=document.title;
 			panelistic = new Panelistic();
 			panelistic.initialize();
+			webview = document.getElementById('webview');
+			webview.src = __dirname + "/page1.html"
 		}
 		const remote = require("@electron/remote");
 	</script>
@@ -26,32 +29,20 @@
 			<img src="src/btn/window/min.png" class="panelistic_controlbtn" id="controlbtn_minbtn" onclick="remote.getCurrentWindow().minimize()">
 		</div>
 		<div id="panelistic_blur"></div>
-		<div id="panelistic_content">
-			<h1>Page Title</h1>
-			<h6>This is a subtitle with a small font size.</h6>
-			<span class="panelistic_placeholder"></span>
-			<div class="panelistic_panel">
-				<div class="panelistic_panel_name">The demo of interactive inputs</div><br><span class="panelistic_placeholder_large"></span>
-				<input type="text" value="This is an input">
-				<input type="button" value="Button"><br>
+		<div id="panelistic_contents">
+			<div id="panelistic_sidebar">
+				<span class="panelistic_sidebar_placeholder"></span>
+				<div class="panelistic_sidebar_title">Title</div>
+				<div class="panelistic_sidebar_subtitle">Subtitle</div>
 				<span class="panelistic_placeholder"></span>
-				<select>
-					<option>Dropbox 1</option>
-					<option>Dropbox 2</option>
-					<option>Dropbox 3</option>
-					<option>Dropbox 4</option>
-				</select>
-				<span class="panelistic_placeholder"></span>
-				<div class="panelistic_checkbox"><input type="checkbox"><span class="panelistic_checkbox_text">Checkbox Text</span></div>
-				<span class="panelistic_placeholder"></span>
-				<textarea>Textarea test</textarea>
+				<div id="select1" class="panelistic_sidebar_selection" onclick="webview.loadURL(__dirname+'/page1.html')">Page 1</div>
+				<div id="select2" class="panelistic_sidebar_selection" onclick="webview.loadURL(__dirname+'/page2.html')">Page 2</div>
+				<div id="select3" class="panelistic_sidebar_selection" onclick="panelistic.page(this.id)">Page Empty</div>
+				<div id="select4" class="panelistic_sidebar_selection" onclick="panelistic.page(this.id)">Page Empty</div>
+				<div id="select5" class="panelistic_sidebar_selection" onclick="panelistic.page(this.id)">Page Empty</div>
 			</div>
-			<span class="panelistic_placeholder"></span>
-			<div class="panelistic_panel">
-				<div class="panelistic_panel_name">The demo of display blocks</div><br><span class="panelistic_placeholder_large"></span>
-				<img src="src/img/example.jpg">
-				<span class="panelistic_placeholder"></span>
-				<div class="panelistic_code"><code>This is an example of the code area<br>12345<br>67890</code></div>
+			<div id="panelistic_content_sidebar">
+				<webview id="webview" nodeintegration disablewebsecurity/></webview>
 			</div>
 		</div>
 	</div>

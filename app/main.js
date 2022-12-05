@@ -28,7 +28,7 @@ let vibrancy = 'dark'
 	//debug(true)
 if (isVibrancySupported()) {
 	vibrancy = {
-		theme: '#dddddd88',
+		theme: '#eeeeee88',
 		effect: 'acrylic',
 		useCustomWindowRefreshMethod: true,
 		disableOnBlur: true,
@@ -38,21 +38,22 @@ if (isVibrancySupported()) {
 if(electron.nativeTheme.shouldUseDarkColors){
 	vibrancy.theme="#22222288";
 }else{
-	vibrancy.theme="#dddddd88";
+	vibrancy.theme="#eeeeee88";
 }
 
 function spawnWindow(){
 	
 
 	win = new BrowserWindow({
-		width: 600,
-		height: 400,
+		width: 800,
+		height: 600,
 		frame: false,
 		resizable:false,
 		webPreferences:{
 	  		nodeIntegration: true, 
 			enableRemoteModule: true,
 	  		contextIsolation: false,
+	  		webviewTag: true
     	},
     	vibrancy:vibrancy
 	});
@@ -75,7 +76,7 @@ electron.nativeTheme.on('updated', () => {
   	if(electron.nativeTheme.shouldUseDarkColors){
   		vibrancy.theme="#22222288";
   	}else{
-  		vibrancy.theme="#dddddd88";
+  		vibrancy.theme="#eeeeee88";
   	}
   	win.setVibrancy(vibrancy)
 });
